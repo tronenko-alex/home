@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Lesson 11</title>
+</head>
+<body>
+
+
+
+<script>
+
+
+console.log ( '↓↓↓ Целое число 10 и строка 10 ↓↓↓' ); 
+var num = 10;
+var numF = '10';
+console.log ( num + numF );
+console.log ( num - numF );
+console.log ( num / numF );
+console.log ( num * numF );
+console.log ( num > numF );
+console.log ( num < numF );
+console.log ( num >= numF );
+console.log ( num <= numF );
+console.log ( num == numF );
+console.log ( num != numF );
+console.log ( num !== numF );
+console.log ( num === numF );
+
+
+console.log ( '' ); 
+console.log ( '↓↓↓ Целое число 5 и число с плавающей запятой 75,50 ↓↓↓' ); 
+var num = 5;
+var numF = 75.50;
+console.log ( num + numF );
+console.log ( num - numF );
+console.log ( num / numF );
+console.log ( num * numF );
+console.log ( num > numF );
+console.log ( num < numF );
+console.log ( num >= numF );
+console.log ( num <= numF );
+console.log ( num == numF );
+console.log ( num != numF );
+console.log ( num !== numF );
+console.log ( num === numF ); 
+
+
+var choice = confirm('Привет, сделай выбор, калькулятор - ОК, конвертер валют - ОТМЕНА');
+
+
+if (choice == true) {
+  alert('Запускаю калькулятор!');
+  var x = parseInt(prompt('Введи первое число'));
+  var z = prompt('Выбери действие (+ - * /)');
+  var y = parseInt(prompt('Введи второе число'));
+
+  if (isNaN(x) || isNaN(y) ) {
+    alert('Ты ввел не коректное значение!');
+  }
+  else if (z == '+') {
+    alert(x+y);
+  }
+  else if (z == '-') {
+    alert(x-y);
+  }
+  else if (z == '*') {
+    alert(x*y);
+  }
+  else if (z == '/') {
+    alert(x/y);
+  }
+  else {
+    alert('плюс(+), минус(-), умножить(*), разделить(/), другого не дано!');
+  }
+}
+
+
+else {
+  alert('Запускаю конвертер валют!');
+  alert('Вас приветствует Приват Банк!');
+  //курсы валют
+  var doll_buy = 24.20;
+  var doll_sell = 24.57;
+  var euro_buy = 26.35;
+  var euro_sell = 26.89;
+
+  alert('Сегодня курс валют следующий, $ покупка ' +doll_buy+ ' продажа ' +doll_sell);
+  alert('Сегодня курс валют следующий, € покупка ' +euro_buy+ ' продажа ' +euro_sell);
+  var a = prompt('В какой валюте ваши деньги? (UAH, USD, EUR)');
+
+  if (a == 'UAH' || a == 'USD' || a == 'EUR' || a == 'uah' || a == 'usd' || a == 'eur' || a == '₴' || a == '$' || a == '€') {
+    var b = prompt('В какую валюту перевести ваши деньги? (UAH, USD, EUR)');
+
+    if (b == 'UAH' || b == 'USD' || b == 'EUR' || b == 'uah' || b == 'usd' || b == 'eur' ||b == '₴' || b == '$' || b == '€') {
+      var c = parseInt(prompt('Введите сумму денег'));
+
+        if (isNaN(c)) {
+          alert('Вы ввели некоректную сумму! до свидания!');
+        }
+        //операции с ₴
+        else if ((a == 'UAH' || a == 'uah' || a == '₴') && (b == 'UAH' || b == 'uah' || b == '₴')) {
+          alert('Вы хотите перевести из гривны в гривну? Мы рады помоч, с вас 10% комиссии =)')
+        }
+        else if ((a == 'UAH' || a == 'uah' || a == '₴') && (b == 'USD' || b == 'usd' || b == '$')) {
+          alert( 'Вы получите: ' +Math.round(c/doll_sell) + '$');
+        }
+        else if ((a == 'UAH' || a == 'uah' || a == '₴') && (b == 'EUR' || b == 'eur' || b == '€')) {
+          alert( 'Вы получите: ' +Math.round(c/euro_sell) + '$');
+        }
+        //операции с $
+        else if ((a == 'USD' || a == 'usd' || a == '$') && (b == 'USD' || b == 'usd' || b == '$')) {
+          alert('Вы хотите перевести из доллара в доллар? Мы рады помоч, с вас 10% комиссии =)')
+        }
+        else if ((a == 'USD' || a == 'usd' || a == '$') && (b == 'UAH' || b == 'uah' || b == '₴')) {
+          alert( 'Вы получите: ' +Math.round(c*doll_buy) + '₴');
+        }
+        else if ((a == 'USD' || a == 'usd' || a == '$') && (b == 'EUR' || b == 'eur' || b == '€')) {
+          alert( 'Вы получите: ' +Math.round((Math.round(c*doll_buy)/euro_sell)) + '€');
+        }
+        //операции с €
+        else if ((a == 'EUR' || a == 'eur' || a == '€') && (b == 'EUR' || b == 'eur' || b == '€')) {
+          alert('Вы хотите перевести из евро в евро? Мы рады помоч, с вас 10% комиссии =)')
+        }
+        else if ((a == 'EUR' || a == 'eur' || a == '€') && (b == 'UAH' || b == 'uah' || b == '₴')) {
+          alert( 'Вы получите: ' +Math.round(c*euro_buy) + '€');
+        }
+        else if ((a == 'EUR' || a == 'eur' || a == '€') && (b == 'USD' || b == 'usd' || b == '$')) {
+          alert( 'Вы получите: ' +Math.round((Math.round(c*euro_buy)/doll_sell)) + '$');
+        }
+    }
+    else {
+      alert('Извините, валюта '+b+' у нас не поддерживается, по этому до свидания!');
+    }
+  }
+  else {
+    alert('Извините, валюта '+a+' у нас не поддерживается, по этому до свидания!');
+  }
+}
+</script>
+
+
+
+</body>
+</html>
