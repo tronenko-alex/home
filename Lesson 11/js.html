@@ -103,30 +103,30 @@ else {
           alert('Вы хотите перевести из гривны в гривну? Мы рады помоч, с вас 10% комиссии =)')
         }
         else if ((a == 'UAH' || a == 'uah' || a == '₴') && (b == 'USD' || b == 'usd' || b == '$')) {
-          alert( 'Вы получите: ' +Math.round(c/doll_sell) + '$');
+          alert( 'Вы получите: ' +(c/doll_sell).toFixed(2) + '$');
         }
         else if ((a == 'UAH' || a == 'uah' || a == '₴') && (b == 'EUR' || b == 'eur' || b == '€')) {
-          alert( 'Вы получите: ' +Math.round(c/euro_sell) + '$');
+          alert( 'Вы получите: ' +(c/euro_sell).toFixed(2) + '€');
         }
         //операции с $
         else if ((a == 'USD' || a == 'usd' || a == '$') && (b == 'USD' || b == 'usd' || b == '$')) {
           alert('Вы хотите перевести из доллара в доллар? Мы рады помоч, с вас 10% комиссии =)')
         }
         else if ((a == 'USD' || a == 'usd' || a == '$') && (b == 'UAH' || b == 'uah' || b == '₴')) {
-          alert( 'Вы получите: ' +Math.round(c*doll_buy) + '₴');
+          alert( 'Вы получите: ' +(c*doll_buy).toFixed(2) + '₴');
         }
         else if ((a == 'USD' || a == 'usd' || a == '$') && (b == 'EUR' || b == 'eur' || b == '€')) {
-          alert( 'Вы получите: ' +Math.round((Math.round(c*doll_buy)/euro_sell)) + '€');
+          alert( 'Вы получите: ' +(((c*doll_buy)/euro_sell)).toFixed(2) + '€');
         }
         //операции с €
         else if ((a == 'EUR' || a == 'eur' || a == '€') && (b == 'EUR' || b == 'eur' || b == '€')) {
           alert('Вы хотите перевести из евро в евро? Мы рады помоч, с вас 10% комиссии =)')
         }
         else if ((a == 'EUR' || a == 'eur' || a == '€') && (b == 'UAH' || b == 'uah' || b == '₴')) {
-          alert( 'Вы получите: ' +Math.round(c*euro_buy) + '€');
+          alert( 'Вы получите: ' +(c*euro_buy).toFixed(2) + '₴');
         }
         else if ((a == 'EUR' || a == 'eur' || a == '€') && (b == 'USD' || b == 'usd' || b == '$')) {
-          alert( 'Вы получите: ' +Math.round((Math.round(c*euro_buy)/doll_sell)) + '$');
+          alert( 'Вы получите: ' +(((c*euro_buy)/doll_sell)).toFixed(2) + '$');
         }
     }
     else {
