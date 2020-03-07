@@ -36,20 +36,20 @@
       $('#new_price').text( price256gb-((discount*price256gb)/100) +' грн' );
     }
 
-    // function down() {
-    //   var val_quantity = $('.quantity').val();
-    //   var old_price = parseInt($('#old_price').text())*val_quantity;
-    //   var new_price = parseInt($('#new_price').text())*val_quantity;
-    //   $('#new_price').text(new_price);
-    //   $('#old_price').text(old_price);
-    // }
-    // function up() {
-    //   var val_quantity = $('.quantity').val();
-    //   var old_price = parseInt($('#old_price').text())*val_quantity;
-    //   var new_price = parseInt($('#new_price').text())*val_quantity;
-    //   $('#new_price').text(new_price);
-    //   $('#old_price').text(old_price);
-    // }
+    function down() {
+      var val_quantity = $('.quantity').val();
+      var old_price = parseInt($('#old_price').text())*val_quantity;
+      var new_price = parseInt($('#new_price').text())*val_quantity;
+      $('#new_price').text(new_price  +' грн');
+      $('#old_price').text(old_price  +' грн');
+    }
+    function up() {
+      var val_quantity = $('.quantity').val();
+      var old_price = parseInt($('#old_price').text())*val_quantity;
+      var new_price = parseInt($('#new_price').text())*val_quantity;
+      $('#new_price').text(new_price  +' грн');
+      $('#old_price').text(old_price  +' грн');
+    }
   </script>
   
 
@@ -162,9 +162,9 @@
       </div>
         <div class="number">
           <div class="number-input">
-            <button onclick="this.parentNode.querySelector('input[type=number]').stepDown();" class="but"></button>
+            <button onclick="this.parentNode.querySelector('input[type=number]').stepDown(),down();" class="but"></button>
             <input class="quantity" min="0" name="quantity" value="1" type="number">
-            <button onclick="this.parentNode.querySelector('input[type=number]').stepUp();" class="plus but"></button>
+            <button onclick="this.parentNode.querySelector('input[type=number]').stepUp(),up();" class="plus but"></button>
           </div>
           <a class="button-1" href="#">Купить сейчас</a>
         </div>
