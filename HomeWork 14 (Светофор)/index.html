@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Светофор</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<div class="traffic_light">
+  <div id="red" class="light"></div>
+  <div id="yellow" class="light"></div>
+  <div id="green" class="light"></div>
+</div>
+
+<div class="for_button">
+  <h3 id="text">Скорее жми на кнопки!!!</h3>
+  <form name=MyForm style="display: none">   
+    <input type=button value="Обнулить" onclick="ClearСlock()">  
+    <input name=stopwatch size=10 value="00:00:00:00">  
+    <input type=button value="Запуск/Остановить" onclick="StartStop()">
+  </form>
+  <input onclick="answ(0)" class="button" type="button" value="Стой" name=""><br>
+  <input onclick="answ(1)" class="button" type="button" value="Готовсь" name=""><br>
+  <input onclick="answ(2)" class="button" type="button" value="Иди" name=""><br>
+  <input onclick="stop()" id="stop" class="button show" type="button" value="Стоп" name="">
+  <input onclick="start()" id="start" class="button hide" type="button" value="Старт" name="">
+  <div id="info"></div>
+</div>
+
+<script>
+///////////Секундомер//////////////
+  //объявляем переменные
+  var base = 60; 
+  var clocktimer,dateObj,dh,dm,ds,ms; 
+  var readout=''; 
+  var h=1,m=1,tm=1,s=0,ts=0,ms=0,init=0; 
+   
+ //функция для очистки поля
+ function ClearСlock() { 
+  clearTimeout(clocktimer); 
+  h=1;m=1;tm=1;s=0;ts=0;ms=0; 
+  init=0;
+  readout='00:00:00:00'; 
+  document.MyForm.stopwatch.value=readout; 
+ } 
+   
+  //функция для старта секундомера
+  function StartTIME() { 
+    var cdateObj = new Date(); 
+    var t = (cdateObj.getTime() - dateObj.getTime())-(s*1000); 
+    if (t>999) { s++; } 
+    if (s>=(m*base)) { 
+      ts=0; 
+      m++; 
+    } else { 
+      ts=parseInt((ms/100)+s); 
+      if(ts>=base) { ts=ts-((m-1)*base); } 
+    } 
+    if (m>(h*base)) { 
+      tm=1; 
+      h++; 
+    } else { 
+      tm=parseInt((ms/100)+m); 
+      if(tm>=base) { tm=tm-((h-1)*base); } 
+    } 
+    ms = Math.round(t/10); 
+    if (ms>99) {ms=0;} 
+    if (ms==0) {ms='00';} 
+    if (ms>0&&ms<=9) { ms = '0'+ms; } 
+    if (ts>0) { ds = ts; if (ts<10) { ds = '0'+ts; }} else { ds = '00'; } 
+    dm=tm-1; 
+    if (dm>0) { if (dm<10) { dm = '0'+dm; }} else { dm = '00'; } 
+    dh=h-1; 
+    if (dh>0) { if (dh<10) { dh = '0'+dh; }} else { dh = '00'; } 
+    readout = dh + ':' + dm + ':' + ds + ':' + ms; 
+    document.MyForm.stopwatch.value = readout; 
+    clocktimer = setTimeout("StartTIME()",1); 
+  } 
+   
+ //Функция запуска и остановки
+ function StartStop() { 
+  if (init==0){ 
+    ClearСlock();
+    dateObj = new Date(); 
+    StartTIME(); 
+    init=1; 
+  } else { 
+    clearTimeout(clocktimer);
+    init=0;
+  } 
+ } 
+/////////Конец секундомера/////////
+
+StartStop();
+
+var game = true;
+colors = [
+'red',
+'yellow',
+'green'
+];
+var randomColor = random(3);
+
+function random (max) {
+return Math.floor(Math.random() * Math.floor(max));
+}
+console.log(colors[randomColor]);
+
+document.getElementById(colors[randomColor]).classList.add(colors[randomColor]);
+
+function answ(answ) {
+  if (randomColor == answ) {
+    if (game == false) {
+      alert('Вы закончили игру!');
+    } 
+    else {
+      var xtime = document.MyForm.stopwatch.value
+      alert('Вы угадали! Ваша реакция => ' +xtime+ ' мс');
+      FullClear()
+    }
+  }
+  else {
+    if (game == false) {
+      alert('Вы закончили игру!');
+    } 
+    else {
+      alert('Неверно! Попробуй еще раз!');
+    }
+  }
+}
+
+function FullClear(){
+  StartStop();
+  ClearСlock();
+  document.getElementById('red').classList.remove('red');
+  document.getElementById('yellow').classList.remove('yellow');
+  document.getElementById('green').classList.remove('green');
+  randomColor = random(3)
+  document.getElementById(colors[randomColor]).classList.add(colors[randomColor]);
+  console.log(colors[randomColor]);
+  StartStop();
+}
+
+function stop() {
+  game = false;
+  StartStop();
+  ClearСlock();
+  document.getElementById('red').classList.remove('red');
+  document.getElementById('yellow').classList.remove('yellow');
+  document.getElementById('green').classList.remove('green');
+  document.getElementById('text').innerHTML = 'Вы закончили игру';
+  document.getElementById('stop').classList.add('hide');
+  document.getElementById('stop').classList.remove('show');
+  document.getElementById('start').classList.add('show');
+  document.getElementById('start').classList.remove('hide');
+}
+function start() {
+  game = true;
+  StartStop();
+  randomColor = random(3)
+  document.getElementById(colors[randomColor]).classList.add(colors[randomColor]);
+  console.log(colors[randomColor]);
+  document.getElementById('text').innerHTML = 'Скорее жми на кнопки!!!';
+  document.getElementById('start').classList.add('hide');
+  document.getElementById('start').classList.remove('show');
+  document.getElementById('stop').classList.add('show');
+  document.getElementById('stop').classList.remove('hide');
+}
+
+</script>
+</body>
+</html>
