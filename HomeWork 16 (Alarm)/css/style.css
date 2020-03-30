@@ -1,0 +1,61 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+.boom {
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  z-index: 1000;
+  display: none;
+}
+.alarm {
+  background: url(../img/bomb.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 286px;
+  width: 512px;
+  position: relative;
+}
+.clock {
+  position: absolute;
+  font-size: 24px;
+  left: 50%;
+  bottom: 41%;
+  color: #ff0a0a;
+  background: #673e30;
+  padding: 7px 7px 4px 5px;
+}
+.button1 {
+  position: absolute;
+  height: 27px;
+  width: 26px;
+  left: 42%;
+  bottom: 58%;
+  cursor: pointer;
+  z-index: 1001;
+}
+.button2 {
+  position: absolute;
+  height: 27px;
+  width: 26px;
+  left: 42%;
+  bottom: 46%;
+  cursor: pointer;
+  z-index: 1001;
+}
+.indicator {
+  position: absolute;
+  height: 8px;
+  width: 8px;
+  right: 32%;
+  bottom: 63%;
+  background: #ff0a0a;
+  border-radius: 100%;
+  display: none;
+}

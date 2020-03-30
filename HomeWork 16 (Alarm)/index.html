@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Clock</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body id="body">
+
+<img class="boom" id="boom" src="img/bg.png" alt="">
+<div class="alarm">
+  <h1 id="clock" class="clock"></h1>
+  <div id="button_power" class="button1"></div>
+  <div id="button_alarm" class="button2"></div>
+  <div id="indicator" class="indicator"></div>
+</div>
+
+
+
+
+<script>
+boom = false;
+alarm = null;
+power = true;
+clock();
+
+function clock() {
+  if (power == true) {
+    var time = new Date();
+    var h = time.getHours();
+    var m = time.getMinutes();
+    var s = time.getSeconds();
+    m = check(m);
+    s = check(s);
+    document.getElementById('clock').innerHTML = h +":"+ m +":"+ s;
+    xClock = setTimeout('clock()',1000);
+  }
+}
+
+function sound() {
+  boom = true;
+  audio = new Audio();
+  audio.src = 'audio/alarm.mp3';
+  audio.autoplay = true;
+  document.getElementById('boom').style.display = "block";
+
+}
+
+function newAlarm() {
+  if (alarm == document.getElementById('clock').innerHTML) {
+    sound();
+    clearInterval(xAlarm);
+    document.getElementById('indicator').style.display = "none"
+    alarm = null;
+  }
+}
+
+function check(i) {
+  if ( i < 10 ) {
+    i = "0" + i;
+  }
+  return i;
+}
+
+button_power.onclick = function() {
+  if (power == true) {
+    if (boom == true) {
+      audio.muted = true;
+      boom = false
+      // document.getElementById('boom').style.display = "none";
+    }
+    power = false;
+    clearTimeout(xClock);
+    document.getElementById('clock').style.color = "#673e30";
+    document.getElementById('indicator').style.display = "none"
+    alarm = null;
+    if ((alarm != null) && alarm != '') {
+      clearInterval(xAlarm);
+    }
+  }
+  else {
+    power = true;
+    document.getElementById('clock').style.color = "#ff0a0a";
+    clock();
+  }
+}
+
+button_alarm.onclick = function() {
+  if (power == true) {
+    if (alarm == null || alarm == '') {
+      alarm = prompt('Вы заводите будильник, формат записи -> 00:00:00');
+      if ((alarm != null) && alarm != '') {
+      document.getElementById('indicator').style.display = "block";
+      xAlarm = setInterval('newAlarm()',1000);
+      }
+    }
+    else {
+      alarm = prompt('Вы уже завели будильник на '+alarm+', об этом свидетельствует красный индикатор на часах, хотите изменить время?');
+    }
+
+  }
+}
+
+</script>
+
+
+</body>
+</html>
