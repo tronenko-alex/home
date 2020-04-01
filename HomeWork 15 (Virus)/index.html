@@ -5,21 +5,28 @@
   <title>HomeWork 15 (Virus)</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body id="body" onclick="music(random(3));">
+  <div class="panel">
+    <input onclick="" id="musicButton" class="button" type="button" value="Выключить музыку" name="">
+    <input onclick="" id="soundButton" class="button" type="button" value="Выключить звуки" name="">
+    <input onclick="" id="lightButton" class="button" type="button" value="Выключить свет" name="">
+    <input onclick="" id="restartButton" class="button" type="button" value="Новая Игра" name="">
+  </div>
+
 <div class="wrap">
   <div id="timer" class="timer">00:01:00</div>
   <div id="speed" class="speed">Speed: x1</div>
   <div id="score" class="score">0 Points</div>
-    <div id="v0" class="block p1"></div>
-    <div id="v1" class="block p2"></div>
-    <div id="v2" class="block p3"></div>
-    <div id="v3" class="block p4"></div>
-    <div id="v4" class="block p5"></div>
-    <div id="v5" class="block p6"></div>
-    <div id="v6" class="block p7"></div>
-    <div id="v7" class="block p8"></div>
-    <div id="v8" class="block p9"></div>
-    <div id="v9" class="block p10"></div>
+    <div id="v1" class="block p1"></div>
+    <div id="v2" class="block p2"></div>
+    <div id="v3" class="block p3"></div>
+    <div id="v4" class="block p4"></div>
+    <div id="v5" class="block p5"></div>
+    <div id="v6" class="block p6"></div>
+    <div id="v7" class="block p7"></div>
+    <div id="v8" class="block p8"></div>
+    <div id="v9" class="block p9"></div>
+    <div id="v10" class="block p10"></div>
     <div class="base">
       <div class="cell b1"></div>
       <div class="cell b2"></div>
@@ -41,14 +48,39 @@
 
 <script>
 
-
 var game = true; //играем?
-var points = 0;
-var speed = 0;
+var points = 0; //всего очков
+var point = 0; //очки за определенного вируса
+var speed = 0; //скорость игры
+var startMusic = true; //первичный запуск музыки
+var musicOn = true; //музыка?
+var soundOn = true; //звуки?
+var lightOn = true; //свет?
 
-//Рандом выбирает вируса
+startTimer(); //запускаем таймер
+launch(); //запускаем вирус
+
 function random(max) {
-  return Math.floor(Math.random() * max);
+  return (Math.ceil(Math.random() * max));
+}
+
+function music(num) {
+  if (startMusic == true) {
+    if (musicOn == true) {
+      musicPlay = new Audio();
+      musicPlay.src = 'audio/m'+num+'.mp3';
+      musicPlay.autoplay = true;
+      startMusic = false;
+    }
+  }
+}
+
+function sound(num) {
+  if (soundOn == true) {
+    soundPlay = new Audio();
+    soundPlay.src = 'audio/k'+num+'.mp3';
+    soundPlay.autoplay = true;
+  }
 }
 
 function startTimer() {
@@ -78,13 +110,9 @@ function startTimer() {
   if (s < 10) s = "0" + s;
   document.getElementById("timer").innerHTML = h+":"+m+":"+s;
   xTimer = setTimeout(startTimer, 1000);
-  }
+}
 
-startTimer(); //запускаем таймер
-launch(); //запускаем вирус
-
-
-function launch() {
+function launch(num) {
   if (game == true) {
     if (s >= 40) {
       speed = 1;
@@ -99,8 +127,26 @@ function launch() {
       document.getElementById("speed").innerHTML = 'Speed: x3';
     }
 
-    var virus = 'v'+random(9); //Создаем переменную STRING с рандомным вирусом
-    var vir = eval('(' +virus+ ')'); //Переводим переменную STRING с рандомным вирусом в объект
+    var virus = 'v'+random(10); //выбираем позицию для вируса
+    var vir = eval('(' +virus+ ')');
+    virusImg = random(4); // выбираем картинку для вируса
+    vir.style.background = 'url(img/virus-'+virusImg+'.png)';
+    vir.style.backgroundRepeat = 'no-repeat';
+    vir.style.backgroundSize = 'contain';
+
+      if (virusImg == 1) {
+        point = 50;//virus-1 - красный - 50 очков
+      }
+      if (virusImg == 2) {
+        point = 40;//virus-2 - зеленый - 40 очков
+      }
+      if (virusImg == 3) {
+        point = 30;//virus-3 - синий - 30 очков
+      }
+      if (virusImg == 4) {
+        point = 20;//virus-4 - в маске - 20 очков
+      }
+
     var start = Date.now();
     
     timerV = setInterval(function() {
@@ -143,76 +189,157 @@ function launch() {
     alert('Игра окончена! Ваш счет: ' +points+' Points!');
   }
 }
-v0.onclick = function() {
-  clearInterval(timerV);
-  v0.style.top = '-10%';
-  points = points + 50;
-  document.getElementById("score").innerHTML = points + ' Points';
-  launch();
-}
+
 v1.onclick = function() {
+  sound(random(4));
   clearInterval(timerV);
   v1.style.top = '-10%';
-  points = points + 40;
+  points = points + point;
   document.getElementById("score").innerHTML = points + ' Points';
   launch();
 }
 v2.onclick = function() {
+  sound(random(4));
   clearInterval(timerV);
   v2.style.top = '-10%';
-  points = points + 50;
+  points = points + point;
   document.getElementById("score").innerHTML = points + ' Points';
   launch();
 }
 v3.onclick = function() {
+  sound(random(4));
   clearInterval(timerV);
   v3.style.top = '-10%';
-  points = points + 10;
+  points = points + point;
   document.getElementById("score").innerHTML = points + ' Points';
   launch();
 }
 v4.onclick = function() {
+  sound(random(4));
   clearInterval(timerV);
   v4.style.top = '-10%';
-  points = points + 30;
+  points = points + point;
   document.getElementById("score").innerHTML = points + ' Points';
   launch();
 }
 v5.onclick = function() {
+  sound(random(4));
   clearInterval(timerV);
   v5.style.top = '-10%';
-  points = points + 40;
+  points = points + point;
   document.getElementById("score").innerHTML = points + ' Points';
   launch();
 }
 v6.onclick = function() {
+  sound(random(4));
   clearInterval(timerV);
   v6.style.top = '-10%';
-  points = points + 50;
+  points = points + point;
   document.getElementById("score").innerHTML = points + ' Points';
   launch();
 }
 v7.onclick = function() {
+  sound(random(4));
   clearInterval(timerV);
   v7.style.top = '-10%';
-  points = points + 30;
+  points = points + point;
   document.getElementById("score").innerHTML = points + ' Points';
   launch();
 }
 v8.onclick = function() {
+  sound(random(4));
   clearInterval(timerV);
   v8.style.top = '-10%';
-  points = points + 10;
+  points = points + point;
   document.getElementById("score").innerHTML = points + ' Points';
   launch();
 }
 v9.onclick = function() {
+  sound(random(4));
   clearInterval(timerV);
   v9.style.top = '-10%';
-  points = points + 40;
+  points = points + point;
   document.getElementById("score").innerHTML = points + ' Points';
   launch();
 }
+v10.onclick = function() {
+  sound(random(4));
+  clearInterval(timerV);
+  v10.style.top = '-10%';
+  points = points + point;
+  document.getElementById("score").innerHTML = points + ' Points';
+  launch();
+}
+musicButton.onclick = function() {
+  if (typeof(musicPlay) != "undefined" && musicPlay !== null) {
+    if (musicOn == true) {
+      musicOn = false;
+      musicPlay.muted = true;
+      document.getElementById("musicButton").value="Включить музыку"
+    }
+    else {
+      musicOn = true
+      musicPlay.muted = false;
+      document.getElementById("musicButton").value="Выключить музыку"
+    }
+  }
+}
+soundButton.onclick = function() {
+  if (typeof(soundPlay) != "undefined" && soundPlay !== null) {
+    if (soundOn == true) {
+      soundOn = false;
+      soundPlay.muted = true;
+      document.getElementById("soundButton").value="Включить звуки"
+    }
+    else {
+      soundOn = true
+      soundPlay.muted = false;
+      document.getElementById("soundButton").value="Выключить звуки"
+    }
+  }
+}
+lightButton.onclick = function() {
+  if (lightOn == true) {
+    lightOn = false;
+    body.style.background = '#000';
+    document.getElementById("lightButton").value="Включить свет"
+  }
+  else {
+    lightOn = true;
+    body.style.background = '#fff';
+    document.getElementById("lightButton").value="Выключить свет"
+  }
+}
+restartButton.onclick = function() {
+  v1.style.top = '-10%';
+  v2.style.top = '-10%';
+  v3.style.top = '-10%';
+  v4.style.top = '-10%';
+  v5.style.top = '-10%';
+  v6.style.top = '-10%';
+  v7.style.top = '-10%';
+  v8.style.top = '-10%';
+  v9.style.top = '-10%';
+  v10.style.top = '-10%';
+  clearInterval(timerV);
+  clearTimeout(xTimer);
+  document.getElementById("timer").innerHTML = "00:01:00";
+  document.getElementById("speed").innerHTML = "Speed: x1";
+  document.getElementById("score").innerHTML = "0 Points";
+  points = 0; //всего очков
+  point = 0; //очки за определенного вируса
+  speed = 0; //скорость игры
+  game = true; //играем?
+  if (typeof(musicPlay) != "undefined" && musicPlay !== null) {
+    musicPlay.muted = true;
+    musicPlay = null;
+    startMusic = true; //первичный запуск музыки
+  }
+  startTimer();
+  launch();
+}
+
+
 
 </script>
 </body>

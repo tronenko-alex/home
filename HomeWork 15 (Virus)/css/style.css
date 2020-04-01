@@ -2,18 +2,38 @@
   font-family: 'Airfool';
   src: url(../fonts/Airfool.otf);
 }
+* {
+    -moz-user-select: none;
+  -khtml-user-select: none;
+  user-select: none;
+}
 body {
   margin: 0px;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   height: 100vh;
+}
+.button {
+  color: #ff0000;
+  background: #000;
+  padding: 1vh 20px;
+  border: none;
+  cursor: pointer;
+  margin: 1vh 0px;
+}
+.button:hover {
+  color: #fff;
+}
+.button:nth-child(4) {
+  margin-left: 30px
 }
 .wrap {
 /*  max-width: 750px;*/
 /*  width: 750px;*/
   width: 50vw;
-  height: 90vh;
+  height: 86vh;
   background: url(../img/bg.jpg);
   background-repeat: no-repeat;
   background-size: cover;
@@ -47,72 +67,43 @@ body {
 .p1 {
   top: -10%;
   left: 0px;
-  background: url(../img/virus-1.png);
-  background-repeat: no-repeat;
-  background-size: contain;
 }
 .p2 {
   top: -10%;
   left: 10%;
-  background: url(../img/virus-2.png);
-  background-repeat: no-repeat;
-  background-size: contain;
 }
 .p3 {
   top: -10%;
   left: 20%;
-  background: url(../img/virus-1.png);
-  background-repeat: no-repeat;
-  background-size: contain;
 }
 .p4 {
   top: -10%;
   left: 30%;
-  background: url(../img/virus-4.png);
-  background-repeat: no-repeat;
-  background-size: contain;
 }
 .p5 {
   top: -10%;
   left: 40%;
-  background: url(../img/virus-3.png);
-  background-repeat: no-repeat;
-  background-size: contain;
 }
 .p6 {
   top: -10%;
   left: 50%;
-  background: url(../img/virus-2.png);
-  background-repeat: no-repeat;
-  background-size: contain;
 }
 .p7 {
   top: -10%;
   left: 60%;
-  background: url(../img/virus-1.png);
-  background-repeat: no-repeat;
-  background-size: contain;
 }
 .p8 {
   top: -10%;
   left: 70%;
-  background: url(../img/virus-3.png);
-  background-repeat: no-repeat;
-  background-size: contain;
 }
 .p9 {
   top: -10%;
   left: 80%;
-  background: url(../img/virus-4.png);
-  background-repeat: no-repeat;
-  background-size: contain;
+
 }
 .p10 {
   top: -10%;
   left: 90%;
-  background: url(../img/virus-2.png);
-  background-repeat: no-repeat;
-  background-size: contain;
 }
 .base {
   width: 100%;
