@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Конвертер валют API PrivatBank</title>
+</head>
+<style>
+body{
+  font-family: 'Arial';
+  font: 14px;
+}
+#currency,#currencyTo {
+  font-weight: 700;
+  cursor: pointer;
+    -moz-user-select: none;
+  -khtml-user-select: none;
+  user-select: none;
+}
+</style>
+<body>
+<h3>Для смены валюты нажмите на нее</h3>
+  <div id="text"></div>
+  <div id="text2"></div><br>
+<span id='currency'>UAH (гривны)</span> ➔ <span id='currencyTo'>USD (доллары)</span>
+  <p><input id="targer" placeholder="грн" name="money"></p>
+  <div id="h2"></div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+getCurse();
+function getCurse() {
+  $.getJSON('https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5', function(data) {
+    console.log(data);
+    buyEUR = parseFloat(data[1].buy);
+    saleEUR = parseFloat(data[1].sale);
+    buyUSD = parseFloat(data[0].buy);
+    saleUSD = parseFloat(data[0].sale);
+    $('#text').html('Текущий курс € покупка: '+buyEUR.toFixed(2)+' грн, продажа: '+saleEUR.toFixed(2)+' грн');
+    $('#text2').html('Текущий курс $ покупка: '+buyUSD.toFixed(2)+' грн, продажа: '+saleUSD.toFixed(2)+' грн');
+  });
+}
+
+$('#targer').keyup(function (){
+  magic();
+});
+
+function magic() {
+  value = $('#targer').val();
+  inCurrency = $('#currency').text();
+  outCurrency = $('#currencyTo').text();
+  if ((inCurrency == 'UAH (гривны)') && (outCurrency == 'UAH (гривны)')) {
+    $('#h2').text(value+' грн');
+  }
+  if ((inCurrency == 'UAH (гривны)') && (outCurrency == 'USD (доллары)')) {
+    $('#h2').text((value/saleUSD).toFixed(2)+'$');
+  }
+  if ((inCurrency == 'UAH (гривны)') && (outCurrency == 'EUR (евро)')) {
+    $('#h2').text((value/saleEUR).toFixed(2)+'€');
+  }
+
+  if ((inCurrency == 'USD (доллары)') && (outCurrency == 'UAH (гривны)')) {
+    $('#h2').text((value*buyUSD).toFixed(2)+' грн');
+  }
+  if ((inCurrency == 'USD (доллары)') && (outCurrency == 'USD (доллары)')) {
+    $('#h2').text(value+'$');
+  }
+  if ((inCurrency == 'USD (доллары)') && (outCurrency == 'EUR (евро)')) {
+    $('#h2').text(((value*buyUSD)/saleEUR).toFixed(2)+'€');
+  }
+
+  if ((inCurrency == 'EUR (евро)') && (outCurrency == 'UAH (гривны)')) {
+    $('#h2').text((value*buyEUR).toFixed(2)+' грн');
+  }
+  if ((inCurrency == 'EUR (евро)') && (outCurrency == 'USD (доллары)')) {
+    $('#h2').text(((value*buyEUR)/saleUSD).toFixed(2)+'$');
+  }
+  if ((inCurrency == 'EUR (евро)') && (outCurrency == 'EUR (евро)')) {
+    $('#h2').text(value+'€');
+  }
+}
+
+$('#currency').click(function (){
+  var textCurrency = $(this).text();
+  if (textCurrency == 'UAH (гривны)') {
+    $(this).text('USD (доллары)');
+    $('#targer').attr('placeholder', '$');
+    magic();
+  }
+  else if (textCurrency == 'USD (доллары)') {
+    $(this).text('EUR (евро)');
+    $('#targer').attr('placeholder', '€');
+    magic();
+  }
+  else if (textCurrency == 'EUR (евро)') {
+    $(this).text('UAH (гривны)');
+    $('#targer').attr('placeholder', 'грн');
+    magic();
+  }
+});
+
+$('#currencyTo').click(function (){
+  var textCurrency = $(this).text();
+  if (textCurrency == 'UAH (гривны)') {
+    $(this).text('USD (доллары)');
+    magic();
+  }
+  else if (textCurrency == 'USD (доллары)') {
+    $(this).text('EUR (евро)');
+    magic();
+  }
+  else if (textCurrency == 'EUR (евро)') {
+    $(this).text('UAH (гривны)');
+    magic();
+  }
+});
+</script>
+</body>
+</html>
