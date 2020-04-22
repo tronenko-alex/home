@@ -637,7 +637,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 /*     Блок 8     */
 .block-8 {
-  display: flex; /*flex*/
+  display: flex;
   align-content: center;
   justify-content: center;
   margin-bottom: 90px;
@@ -652,8 +652,7 @@ input[type=number]::-webkit-outer-spin-button {
   text-transform: uppercase;
   text-align: center;
 }
-
-/*.block-8 .wrap .slider-4 .reviews{
+.block-8 .wrap .slider-4 .reviews{
   margin: 70px 40px 0px 0px;
   background: #fafafa;
   padding: 0px 0px 40px 30px;
@@ -696,7 +695,7 @@ input[type=number]::-webkit-outer-spin-button {
   background-repeat: no-repeat;
   right: 10px;
   bottom: -60px;
-}*/
+}
 
 
 /*     Блок 9     */
@@ -737,7 +736,6 @@ input[type=number]::-webkit-outer-spin-button {
 .block-9 .wrap-1 .wrap-2 .order {
   display: flex;
   flex-direction: row;
-  justify-content: center;
   align-items: stretch;
   align-content: center;
 }
@@ -759,6 +757,9 @@ input[type=number]::-webkit-outer-spin-button {
   font-size: 15px;
   font-family: 'Proxima Nova Regular';
   margin-bottom: 40px;
+}
+.block-9 .wrap-1 .wrap-2 .order .one {
+  padding-right: 19px;
 }
 .block-9 .wrap-1 .wrap-2 .order-1 {
   width: 232px;
@@ -787,6 +788,7 @@ input[type=number]::-webkit-outer-spin-button {
   justify-content: center;
   text-transform: uppercase;
   margin: 100px 0 40px 0;
+  text-align: center;
 }
 .block-10 .wrap {
   max-width: 1170px;
@@ -877,7 +879,6 @@ input[type=number]::-webkit-outer-spin-button {
   -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
   filter: grayscale(100%);
 }
-
 
 
 /*     Блок 12     */

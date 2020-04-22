@@ -206,35 +206,33 @@
 
 
 <!-- Блок 8 -->
-  <div id="recall" class="block-8">
+  <div class="block-8">
     <div class="wrap">
       <h3>Отзывы наших покупателей</h3>
-      
       <div class="slider-4">
-        <div>
+        <div class="reviews">
           <img src="img/reviews-1.jpg" alt="reviews">
-<!--           <p>Анна</p>
-          <p>Lorem Ipsum is simply dummy text of the in new<br>printing and typesetting industry. Lorem ipsum<br>of type.</p> -->
+          <p>Анна</p>
+          <p>Lorem Ipsum is simply dummy text of the in new<br>printing and typesetting industry. Lorem ipsum<br>of type.</p>
         </div>
-        <div>
+        <div class="reviews">
           <img src="img/reviews-2.jpg" alt="reviews">
-<!--           <p>Олег</p>
-          <p>Lorem Ipsum is simply dummy text of the in new<br>printing and typesetting industry. Lorem ipsum<br>of type.</p> -->
+          <p>Олег</p>
+          <p>Lorem Ipsum is simply dummy text of the in new<br>printing and typesetting industry. Lorem ipsum<br>of type.</p>
         </div>
-        <div>
+        <div class="reviews">
           <img src="img/reviews-3.jpg" alt="reviews">
-<!--           <p>Юлия</p>
-          <p>Lorem Ipsum is simply dummy text of the in new<br>printing and typesetting industry. Lorem ipsum<br>of type.</p> -->
+          <p>Юлия</p>
+          <p>Lorem Ipsum is simply dummy text of the in new<br>printing and typesetting industry. Lorem ipsum<br>of type.</p>
         </div>
-        <div>
+        <div class="reviews">
           <img src="img/reviews-4.jpg" alt="reviews">
-<!--           <p>Дмитрий Нагиев</p>
-          <p>Lorem Ipsum is simply dummy text of the in new<br>printing and typesetting industry. Lorem ipsum<br>of type.</p> -->
-        </div>
-          
+          <p>Дмитрий Нагиев</p>
+          <p>Lorem Ipsum is simply dummy text of the in new<br>printing and typesetting industry. Lorem ipsum<br>of type.</p>
         </div>
       </div>
     </div>
+  </div>
 
 
 <!-- Блок 9 -->
@@ -243,7 +241,7 @@
       <h3>Как заказать flash-накопитель y-tech</h3>
       <div class="wrap-2">
         <div class="order order-1">
-          <div class="order-wrap-1">1</div>
+          <div class="order-wrap-1 one">1</div>
           <div class="order-wrap-2">
             <p>Заявка</p>
             <p>Оставить заявку на нашем сайте.</p>
@@ -380,9 +378,15 @@
         focusOnSelect: false,
         responsive: [
         {
-          breakpoint: 1200,
+          breakpoint: 1191, //1191
           settings: {
-            slidesToShow: 1
+            slidesToShow: 2 //
+          }
+        },
+        {
+          breakpoint: 751, //1191
+          settings: {
+            slidesToShow: 1 //
           }
         }
         ]
