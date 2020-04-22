@@ -1,0 +1,458 @@
+@media (min-width: 591px) and (max-width: 1190px) {
+
+
+/*     Блок 1     */
+.block-1 .wrap-1 .nav {
+  display: none;
+  width: 100%;
+  text-align: center;
+  margin-left: 0px;
+  position: relative;
+  top: 0px;
+}
+.block-1 .wrap-1 .nav:hover {
+  display: block;
+} 
+.block-1 .wrap-1 > img {
+  display: block;
+}
+.block-1 .wrap-1 > img:hover {
+  padding-bottom: 50px;
+  padding-left: 20%;
+  display: block;
+}
+.block-1 .wrap-1 > img:hover {
+  display: block;
+}
+.block-1 .wrap-1 > img:hover ~ .nav{
+  display: block;
+}
+.block-1 .wrap-1 .logo {
+  z-index: 1000;
+  display: block;
+  margin: 0 auto;
+}
+.block-1 .wrap-1 .nav li a {
+  font-size: 20px;
+}
+.block-1 .wrap-1 .nav li .button-1 {
+  display: block;
+}
+.block-1 .wrap-2 h1 {
+  font-size: 25px;
+}
+.block-1 .wrap-2 p {
+font-size: 15px;
+text-align: center;
+}
+
+
+/*     Блок 2     */
+.block-2 h3 {
+  margin: 40px 0 40px 0;
+  text-align: center;
+}
+.block-2 .wrap {
+  margin-bottom: 40px;
+}
+
+
+/*     Блок 3     */
+.block-3 .wrap h3 {
+  padding: 40px 0px 40px 0px;
+}
+.block-3 .wrap p {
+  font-size: 16px 
+}
+
+
+/*     Блок 4     */
+.block-4 {
+  margin-bottom: 40px;
+}
+.block-4 .wrap-1 {
+  margin-top: 40px;
+}
+.block-4 .wrap-1 .slider-2 .slider-2-slide {
+  margin-top: 40px;
+}
+.block-4 .wrap-2 {
+  padding-left: 20px;
+}
+.block-4 .wrap-2 h3 {
+  margin: 40px 0px 40px 0px;
+}
+.block-4 .wrap-2 p {
+  font-size: 16px;
+}
+
+
+/*     Блок 5     */
+.block-5 .wrap .sale .email {
+  margin: 0 10px;
+}
+.block-5 .wrap .sale .button-1 {
+  right: 12px;
+}
+
+
+/*     Блок 6     */
+.block-6 .wrap-1 {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+.block-6 .wrap-1 h3 {
+  font-size: 28px;
+}
+.block-6 .wrap-1 .wrap-2 .column-1,
+.block-6 .wrap-1 .wrap-2 .column-2 {
+  margin-top: 20px;
+  padding-left: 20px;
+  margin-left: 0px;
+}
+.block-6 .wrap-1 .wrap-2 img {
+  margin: 20px auto 0px auto; 
+}
+.block-6 .wrap-1 .wrap-2 .column-1 p:nth-child(1),
+.block-6 .wrap-1 .wrap-2 .column-1 p:nth-child(3),
+.block-6 .wrap-1 .wrap-2 .column-1 p:nth-child(5),
+.block-6 .wrap-1 .wrap-2 .column-2 p:nth-child(1),
+.block-6 .wrap-1 .wrap-2 .column-2 p:nth-child(3),
+.block-6 .wrap-1 .wrap-2 .column-2 p:nth-child(5) {
+  font-size: 17px;
+  font-family: 'Proxima Nova Bold';
+  margin-bottom: 5px;
+}
+
+.block-6 .wrap-1 .wrap-2 .column-1 p:nth-child(3),
+.block-6 .wrap-1 .wrap-2 .column-2 p:nth-child(3) {
+  margin-top: 20px;
+}
+.block-6 .wrap-1 .wrap-2 .column-1 p:nth-child(5),
+.block-6 .wrap-1 .wrap-2 .column-2 p:nth-child(5) {
+  margin-top: 20px;
+}
+
+.block-6 .wrap-1 .wrap-2 {
+  flex-direction: column;
+}
+
+/*
+/*     Блок 8     */
+/*.block-8 .wrap {
+  margin-top: 20px;*/
+/*}
+.block-8 .wrap .slider-4 .reviews{
+  width: 50% !important;
+}*/
+
+
+/*     Блок 9     */
+.block-9 .wrap-1 {
+  margin-top: 40px;
+}
+.block-9 .wrap-1 h3 {
+  font-size: 22px;  
+}
+.block-9 .wrap-1 .wrap-2 {
+  margin-top: 20px;  
+}
+.block-9 .wrap-1 .wrap-2 .order {
+  margin: 0 auto;
+}
+.block-9 .wrap-1 img {
+  display: none;
+}
+
+
+/*     Блок 10     */
+.block-10 h3 {
+  margin: 40px 0 40px 0;
+}
+.block-10 .wrap {
+  margin-bottom: 40px;
+}
+
+
+/*     Блок 11     */
+.block-11 .address {
+  padding: 10px 20px 10px 20px;
+  top: 0px;
+  right: 0;
+}
+
+
+/*     Блок 12     */
+.block-12 .wrap .logo {
+  margin: 40px 10px; 
+}
+.block-12 .wrap .social {
+  margin-right: 10px;
+}
+
+}
+@media (max-width: 590px) {
+/*     Блок 1     */
+.block-1 .wrap-1 .nav {
+  display: none;
+  width: 100%;
+  text-align: center;
+  margin-left: 0px;
+  position: relative;
+  top: 0px;
+}
+.block-1 .wrap-1 .nav:hover {
+  display: block;
+} 
+.block-1 .wrap-1 > img {
+  display: block;
+}
+.block-1 .wrap-1 > img:hover {
+  padding-bottom: 50px;
+  padding-left: 20%;
+  display: block;
+}
+.block-1 .wrap-1 > img:hover {
+  display: block;
+}
+.block-1 .wrap-1 > img:hover ~ .nav{
+  display: block;
+}
+.block-1 .wrap-1 .logo {
+  z-index: 1000;
+  display: block;
+  margin: 0 auto;
+}
+.block-1 .wrap-1 .nav li a {
+  font-size: 20px;
+}
+.block-1 .wrap-1 .nav li .button-1 {
+  display: block;
+}
+.block-1 .wrap-2 h1 {
+  font-size: 25px;
+}
+.block-1 .wrap-2 p {
+font-size: 15px;
+text-align: center;
+}
+
+
+/* 
+    Блок 2     */
+.block-2 h3 {
+  margin: 40px 0 40px 0;
+  text-align: center;
+}
+.block-2 .wrap {
+  margin-bottom: 40px;
+}
+
+.block-2 .wrap .advantages {
+  margin: 0px auto 10px auto;
+}
+
+
+/*     Блок 3     */
+.block-3 .wrap h3 {
+  padding: 40px 0px 40px 0px;
+  font-size: 25px;
+}
+.block-3 .wrap p {
+  font-size: 15px 
+}
+
+
+/*     Блок 4     */
+.block-4 {
+  margin-bottom: 40px;
+}
+.block-4 .wrap-1 {
+  width: 300px;
+  margin-top: 40px;
+}
+.block-4 .wrap-1 .slider-2 .slider-2-slide {
+  margin-top: 0px;
+}
+.block-4 .slider-2 .slick-prev {
+  left: 20%;
+}
+.block-4 .slider-2 .slick-next {
+  right: 20%;
+}
+.block-4 .wrap-2 {
+  padding-left: 20px;
+  width: 100%;
+}
+.block-4 .wrap-2 h3 {
+  margin: 40px 0px 30px 0px;
+  font-size: 25px;
+  text-align: center;
+}
+.block-4 .wrap-2 p:nth-child(3) {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.block-4 .wrap-2 form {
+    margin-top: 40px;
+}
+.block-4 .wrap-2 form .radio {
+  font-size: 15px;
+}
+.block-4 .wrap-2 form .part-1 {
+    margin-bottom: 20px;
+}
+.block-4 .wrap-2 .price p:nth-child(1) {
+  font-size: 35px;
+  width: 100%;
+}
+.block-4 .wrap-2 .price p:nth-child(2) {
+  font-size: 25px;
+  width: 100%;
+}
+.block-4 .wrap-2 form .part-1 .radio {
+    margin-right: 10px;
+}
+.block-4 .number-input {
+  margin: 20px auto 0px auto;
+}
+.block-4 .wrap-2 .number .button-1 {
+  margin: 20px auto 0px auto;
+}
+.block-4 .wrap-2 .number {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  align-items: center;
+  align-content: center;
+}
+input[type="radio"]:checked + label, input[type="radio"]:not(:checked) + label {
+    padding-left: 43px;
+}
+.block-4 .wrap-2 form .part-2 .radio {
+    margin-right: 2px;
+}
+
+/*     Блок 5     */
+.block-5 .wrap .sale .email {
+  margin: 0 10px;
+}
+.block-5 .wrap .sale .button-1 {
+  right: 12px;
+}
+.block-5 p {
+  font-size: 25px;
+}
+.block-5 p:nth-child(1) {
+  margin-bottom: 30px;
+  font-size: 30px;
+}
+.block-5 .wrap .sale .button-1 {
+  font-size: 14px;
+  padding: 15px 10px;
+}
+
+
+/*     Блок 6     */
+.block-6 .wrap-1 {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+.block-6 .wrap-1 h3 {
+  font-size: 25px;
+}
+.block-6 .wrap-1 .wrap-2 .column-1,
+.block-6 .wrap-1 .wrap-2 .column-2 {
+  margin-top: 20px;
+  padding-left: 20px;
+  margin-left: 0px;
+}
+.block-6 .wrap-1 .wrap-2 img {
+  margin: 20px auto 0px auto; 
+}
+.block-6 .wrap-1 .wrap-2 .column-1 p:nth-child(1),
+.block-6 .wrap-1 .wrap-2 .column-1 p:nth-child(3),
+.block-6 .wrap-1 .wrap-2 .column-1 p:nth-child(5),
+.block-6 .wrap-1 .wrap-2 .column-2 p:nth-child(1),
+.block-6 .wrap-1 .wrap-2 .column-2 p:nth-child(3),
+.block-6 .wrap-1 .wrap-2 .column-2 p:nth-child(5) {
+  font-size: 17px;
+  font-family: 'Proxima Nova Bold';
+  margin-bottom: 5px;
+}
+
+.block-6 .wrap-1 .wrap-2 .column-1 p:nth-child(3),
+.block-6 .wrap-1 .wrap-2 .column-2 p:nth-child(3) {
+  margin-top: 20px;
+}
+.block-6 .wrap-1 .wrap-2 .column-1 p:nth-child(5),
+.block-6 .wrap-1 .wrap-2 .column-2 p:nth-child(5) {
+  margin-top: 20px;
+}
+
+.block-6 .wrap-1 .wrap-2 {
+  flex-direction: column;
+}
+
+.block-6 img {
+  width: 300px;
+  height: auto;
+}
+
+/*.block-8 .slider-4 .slick-prev {
+  left: 10px;
+  bottom: -60px;
+}
+.block-8 .slider-4 .slick-next {
+  background-image: url(../img/right.png);
+  background-repeat: no-repeat;
+  left: 20px;
+  bottom: -60px;
+}*/
+
+
+
+/*     Блок 9     */
+.block-9 .wrap-1 {
+  margin-top: 40px;
+}
+.block-9 .wrap-1 h3 {
+  font-size: 22px;  
+}
+.block-9 .wrap-1 .wrap-2 {
+  margin-top: 20px;  
+}
+.block-9 .wrap-1 .wrap-2 .order {
+  margin: 0 auto;
+}
+.block-9 .wrap-1 img {
+  display: none;
+}
+
+
+/*     Блок 10     */
+.block-10 h3 {
+  margin: 40px 0 40px 0;
+}
+.block-10 .wrap {
+  margin-bottom: 40px;
+}
+
+
+/*     Блок 11     */
+.block-11 .address {
+  padding: 20px 20px 20px 20px;
+  top: 0px;
+  left: 0;
+  right: 0;
+}
+
+
+/*     Блок 12     */
+.block-12 .wrap .logo {
+  margin: 40px 10px; 
+}
+.block-12 .wrap .social {
+  margin-right: 10px;
+}
+}

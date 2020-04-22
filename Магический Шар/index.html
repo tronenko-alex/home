@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-	<meta charset="UTF-8">
-	<title>Lesson 12</title>
+<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Магический Шар</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body style="display: flex; flex-direction: row;flex-wrap: wrap; justify-content: center; align-content: center;">
@@ -20,28 +21,28 @@ function random (num) {
 function balltext() {
   var number = random(8);
     if (number == 1) {
-      $('#text').text('ДА');
+      $('#text').text('Да!');
     }
     else if (number == 2) {
-      $('#text').text('НЕТЬ!');
+      $('#text').text('Нет!');
     }
     else if (number == 3) {
-      $('#text').text('Подумай еще!');
+      $('#text').text('Подумайте еще раз!');
     }
     else if (number == 4) {
-      $('#text').text('Плохая идея');
+      $('#text').text('Это плохая идея!');
     }
     else if (number == 5) {
-      $('#text').text('Ты уверен?');
+      $('#text').text('Вы уверены?');
     }
     else if (number == 6) {
-      $('#text').text('Отличная идея');
+      $('#text').text('Отличная идея!');
     }
     else if (number == 7) {
-      $('#text').text('Ой все');
+      $('#text').text('Я давно так не сомневался!');
     }
     else {
-      $('#text').text('Спроси позже!');
+      $('#text').text('Спросите позже, я занят!');
     }
 }
 
