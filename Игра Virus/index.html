@@ -8,10 +8,10 @@
 </head>
 <body id="body" onclick="music(random(3));">
   <div class="panel">
-    <input onclick="" id="musicButton" class="button" type="button" value="Выключить музыку" name="">
-    <input onclick="" id="soundButton" class="button" type="button" value="Выключить звуки" name="">
-    <input onclick="" id="lightButton" class="button" type="button" value="Выключить свет" name="">
-    <input onclick="" id="restartButton" class="button" type="button" value="Новая Игра" name="">
+    <img src="img/musicOn.svg" id="musicButton" class="ui" alt="Музыка включена">
+    <img src="img/soundOn.svg" id="soundButton" class="ui" alt="Звук включен">
+    <img src="img/lightOn.svg" id="lightButton" class="ui light" alt="Свет включен">
+    <img src="img/repeat.svg" id="restartButton" class="ui" alt="Новая Игра">
   </div>
 
 <div class="wrap">
@@ -276,12 +276,12 @@ musicButton.onclick = function() {
     if (musicOn == true) {
       musicOn = false;
       musicPlay.muted = true;
-      document.getElementById("musicButton").value="Включить музыку"
+      document.getElementById("musicButton").setAttribute('src', 'img/musicOff.svg');
     }
     else {
       musicOn = true
       musicPlay.muted = false;
-      document.getElementById("musicButton").value="Выключить музыку"
+      document.getElementById("musicButton").setAttribute('src', 'img/musicOn.svg');
     }
   }
 }
@@ -290,12 +290,12 @@ soundButton.onclick = function() {
     if (soundOn == true) {
       soundOn = false;
       soundPlay.muted = true;
-      document.getElementById("soundButton").value="Включить звуки"
+      document.getElementById("soundButton").setAttribute('src', 'img/soundOff.svg');
     }
     else {
       soundOn = true
       soundPlay.muted = false;
-      document.getElementById("soundButton").value="Выключить звуки"
+      document.getElementById("soundButton").setAttribute('src', 'img/soundOn.svg');
     }
   }
 }
@@ -303,12 +303,12 @@ lightButton.onclick = function() {
   if (lightOn == true) {
     lightOn = false;
     body.style.background = '#000';
-    document.getElementById("lightButton").value="Включить свет"
+      document.getElementById("lightButton").setAttribute('src', 'img/lightOff.svg');
   }
   else {
     lightOn = true;
     body.style.background = '#fff';
-    document.getElementById("lightButton").value="Выключить свет"
+      document.getElementById("lightButton").setAttribute('src', 'img/lightOn.svg');
   }
 }
 restartButton.onclick = function() {
