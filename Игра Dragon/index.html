@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Игра Дракон</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="wrap">
+  <div id="score" class="ui score" style="display: none;">0 Points</div>
+  <div id="speed" class="ui speed" style="display: none;">x1</div>
+    <img src="img/musicOn.svg" id="musicButton" class="ui_button musicButton" alt="Музыка включена" style="display: none;">
+    <img src="img/soundOn.svg" id="soundButton" class="ui_button soundButton" alt="Звук включен" style="display: none;">
+    <img src="img/fire.svg" id="styleButton" class="ui_button styleButton" alt="Стиль" style="display: none;">
+    <div id="buttonStart" class="buttonStart">Начать игру</div>
+    <div id="buttonNewGame" style="display: none;" class="buttonNewGame">Новая игра</div>
+    <img id="dragon" style="top: 50%; left: 50%; margin-top: -7.5%; margin-left: -7.5%" class="dragon" src="img/dragon.png" alt="дракончик">
+    <div id="wall1" class="wall wall-1"></div>
+    <div id="wall2" class="wall wall-2"></div>
+    <div id="wall3" class="wall wall-3"></div>
+  </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+
+
+var axisY = 40; //Начальная позиция на вертикальное оси | (min - 0 / max 84)
+var axisX = 0;  //Начальная позиция на горизонтальное оси -- (min - 0 / max 84)
+var inverseAxisX = 80;  //Начальная позиция на горизонтальное оси в инверсии -- (min - 0 / max 84)
+
+var dragonSpeed = 2; //Скорость Дракончика
+var dragonFoot = 1; //Положение ног (1 - левая / 2 - правая)
+var dragonRotation = 2; //Поворот (1 - на лево / 2 - на право)
+
+var enter = 1; //Включен Ентер и Пробел (Только для старта и рестарта)
+var gamePad = 0; //Управление включено?
+
+var score = 0; //Счет
+var scoreUp = 0; //Счет для ускорения
+var speed = 1; //Скорость игры
+var multi = 0.1; //Ускорение игры
+var music = 1; //Музыка включена?
+var sound = 1; //Звук включен?
+var style = 1; //Стиль (1 - Огонь / 2 - Снег)
+
+//Настройки дракона лучше не менять!
+var dragonHeight = 15; //Высота дракона
+var dragonWidth = 15 //Ширина дракона
+var dragonBottom = axisY+dragonHeight;
+var dragonLeft = inverseAxisX+20;
+var dragonRight = dragonLeft-dragonWidth;
+
+fail = new Audio();
+fail.src = 'audio/fail.mp3';
+fail.autoplay = false;
+
+musicPlay = new Audio();
+musicPlay.src = 'audio/start.mp3';
+musicPlay.autoplay = false;
+
+musicButton.onclick = function() { //кнопка 'музыка'
+  if (music == 1) {
+    music = 0;
+    musicPlay.muted = true;
+    if (style == 1) {
+      $('.musicButton').attr({'style':'display: block','src':'img/musicOff.svg'});
+    }
+    else {
+      $('.musicButton').attr({'style':'display: block','src':'img/musicOff2.svg'});
+    }
+  }
+  else {
+    music = 1;
+    musicPlay.muted = false;
+    if (style == 1) {
+      $('.musicButton').attr({'style':'display: block','src':'img/musicOn.svg'});
+    }
+    else {
+      $('.musicButton').attr({'style':'display: block','src':'img/musicOn2.svg'});
+    }
+  }
+}
+
+soundButton.onclick = function() { //кнопка 'звук'
+  if (sound == 1) {
+    sound = 0;
+    fail.muted = true;
+    if (style == 1) {
+      $('.soundButton').attr({'style':'display: block','src':'img/soundOff.svg'});
+    }
+    else {
+      $('.soundButton').attr({'style':'display: block','src':'img/soundOff2.svg'});
+    }
+  }
+  else {
+    sound = 1;
+    fail.muted = false;
+    if (style == 1) {
+      $('.soundButton').attr({'style':'display: block','src':'img/soundOn.svg'});
+    }
+    else {
+      $('.soundButton').attr({'style':'display: block','src':'img/soundOn2.svg'});
+    }
+  }
+}
+
+styleButton.onclick = function() { //кнопка 'стиль'
+  if (style == 1) { //стиль мороз
+    style = 2;
+    $('.styleButton').attr({'style':'display: block','src':'img/snow.svg'});
+    $('body').attr('style','background: url(\'img/bg4.jpg\')');
+    $('.wrap').attr('style','outline: 5px solid #002bfd;');
+    $('.ui').attr('style','display: block; color: #002bfd;');
+    if (music == 1) {
+      $('.musicButton').attr({'style':'display: block','src':'img/musicOn2.svg'});
+    }
+    else {
+      $('.musicButton').attr({'style':'display: block','src':'img/musicOff2.svg'});
+    }
+    if (sound == 1) {
+      $('.soundButton').attr({'style':'display: block','src':'img/soundOn2.svg'});
+    }
+    else {
+      $('.soundButton').attr({'style':'display: block','src':'img/soundOff2.svg'});
+    }
+  }
+  else {  //стиль огонь
+    style = 1;
+    $('.styleButton').attr({'style':'display: block','src':'img/fire.svg'});
+    $('body').attr('style','background: url(\'img/bg.jpg\')');
+    $('.wrap').attr('style','outline: 5px solid #ff0000;');
+    $('.ui').attr('style','display: block; color: #ff0000;');
+    if (music == 1) {
+      $('.musicButton').attr({'style':'display: block','src':'img/musicOn.svg'});
+    }
+    else {
+      $('.musicButton').attr({'style':'display: block','src':'img/musicOff.svg'});
+    }
+    if (sound == 1) {
+      $('.soundButton').attr({'style':'display: block','src':'img/soundOn.svg'});
+    }
+    else {
+      $('.soundButton').attr({'style':'display: block','src':'img/soundOff.svg'});
+    }
+  }
+}
+
+function random(max) { //выбор препятствия
+  return (Math.ceil(Math.random() * max));
+}
+
+buttonStart.onclick = function() { //кнопка 'Начать игру'
+  gamePad = 1;
+  $('#buttonStart').attr('style','display: none');
+  $('.ui').attr('style','display: block');
+  $('.ui_button').attr('style','display: block');
+  $('#dragon').attr('style','top:'+axisY+'%; left:'+axisX+'%;');
+  musicPlay.play()
+  launch();
+}
+
+buttonNewGame.onclick = function () { //Новая Игра
+
+  axisY = 40;
+  axisX = 0;
+  inverseAxisX = 80;
+  dragonSpeed = 2;
+  dragonFoot = 1;
+  dragonRotation = 2;
+  gamePad = 1;
+  score = 0;
+  scoreUp = 0;
+  speed = 1;
+  multi = 0.1;
+
+  $('#buttonNewGame').attr('style','display: none');
+  $('#dragon').attr('style','top:'+axisY+'%; left:'+axisX+'%;');
+  $('#wall1').attr('style','right: -10%');
+  $('#wall2').attr('style','right: -10%');
+  $('#wall3').attr('style','right: -10%');
+
+  dragonBottom = axisY+dragonHeight;
+  dragonLeft = inverseAxisX+20;
+  dragonRight = dragonLeft-dragonWidth;
+
+  musicPlay.load()
+  musicPlay.play()
+
+
+  launch();
+}
+
+$(document).keydown(function (event) {
+
+  if (event.which == 13 || event.which == 32) { //старт игры Enter или Пробелом
+    if (enter == 1) {
+
+      enter = 0;
+      axisY = 40;
+      axisX = 0;
+      inverseAxisX = 80;
+      dragonSpeed = 2;
+      dragonFoot = 1;
+      dragonRotation = 2;
+      gamePad = 1;
+      score = 0;
+      scoreUp = 0;
+      speed = 1;
+      multi = 0.1;
+
+      $('#buttonStart').attr('style','display: none');
+      $('#buttonNewGame').attr('style','display: none');
+      $('.ui_button').attr('style','display: block');
+      $('#dragon').attr('style','top:'+axisY+'%; left:'+axisX+'%;');
+      $('#wall1').attr('style','right: -10%');
+      $('#wall2').attr('style','right: -10%');
+      $('#wall3').attr('style','right: -10%');
+
+      if (style == 1) {
+        $('.ui').attr('style','display: block');
+      }
+      else {
+        $('.ui').attr('style','display: block; color: #002bfd;');
+      }
+
+      dragonBottom = axisY+dragonHeight;
+      dragonLeft = inverseAxisX+20;
+      dragonRight = dragonLeft-dragonWidth;
+
+        musicPlay.load()
+        musicPlay.play()
+
+      launch();
+
+    }
+  }
+
+  if (gamePad == 1) { //проверка управления
+
+    if (event.which == 38 || event.which == 119 || event.which == 87 || event.which == 1094 || event.which == 1062) { //вверх
+      if (axisY > 0) {
+        axisY = axisY-dragonSpeed;
+        dragonBottom = axisY+dragonHeight;
+        $('#dragon').attr('style','top:'+axisY+'%; left:'+axisX+'%');
+        if (dragonRotation == 2) {
+          if (dragonFoot == 1) {
+            dragonFoot = 2;
+            $('#dragon').attr('src','img/dragon2.png')
+          }
+          else if (dragonFoot == 2) {
+            dragonFoot = 1;
+            $('#dragon').attr('src','img/dragon.png')
+          }
+        }
+        else if (dragonRotation == 1) {
+          if (dragonFoot == 1) {
+            dragonFoot = 2;
+            $('#dragon').attr('src','img/dragonl2.png')
+          }
+          else if (dragonFoot == 2) {
+            dragonFoot = 1;
+            $('#dragon').attr('src','img/dragonl.png')
+          }
+        }
+      }
+    }
+
+    else if (event.which == 40 || event.which == 115 || event.which == 83 || event.which == 1099 || event.which == 1067) { //вниз
+      if (axisY < 84) {
+        axisY = axisY+dragonSpeed;
+        dragonBottom = axisY+dragonHeight;
+        $('#dragon').attr('style','top:'+axisY+'%; left:'+axisX+'%');
+        if (dragonRotation == 2) {
+          if (dragonFoot == 1) {
+            dragonFoot = 2;
+            $('#dragon').attr('src','img/dragon2.png')
+          }
+          else if (dragonFoot == 2) {
+            dragonFoot = 1;
+            $('#dragon').attr('src','img/dragon.png')
+          }
+        }
+        else if (dragonRotation == 1) {
+          if (dragonFoot == 1) {
+            dragonFoot = 2;
+            $('#dragon').attr('src','img/dragonl2.png')
+          }
+          else if (dragonFoot == 2) {
+            dragonFoot = 1;
+            $('#dragon').attr('src','img/dragonl.png')
+          }
+        }
+      }
+    }
+    else if (event.which == 37 || event.which == 97 || event.which == 65 || event.which == 1092 || event.which == 1060) { //влево
+      if (axisX > 0) {
+        axisX = axisX-dragonSpeed;
+        inverseAxisX = inverseAxisX+dragonSpeed;
+
+      dragonLeft = inverseAxisX+20;
+      dragonRight = dragonRight = dragonLeft-dragonWidth;
+
+        $('#dragon').attr('style','top:'+axisY+'%; left:'+axisX+'%');
+        if (dragonRotation == 2) {
+          if (dragonFoot == 1) {
+            dragonFoot = 2;
+            $('#dragon').attr('src','img/dragonl2.png');
+            dragonRotation = 1;
+          }
+          else if (dragonFoot == 2) {
+            dragonFoot = 1;
+            $('#dragon').attr('src','img/dragonl.png');
+            dragonRotation = 1;
+          }
+        }
+        else if (dragonRotation == 1) {
+          if (dragonFoot == 1) {
+            dragonFoot = 2;
+            $('#dragon').attr('src','img/dragonl2.png');
+          }
+          else if (dragonFoot == 2) {
+            dragonFoot = 1;
+            $('#dragon').attr('src','img/dragonl.png');
+          }
+        }
+      }
+    }
+    else if (event.which == 39 || event.which == 100 || event.which == 68 || event.which == 1074 || event.which == 1042) { //вправо
+      if (axisX < 84) {
+        axisX = axisX+dragonSpeed;
+        inverseAxisX = inverseAxisX-dragonSpeed;
+
+      dragonLeft = inverseAxisX+20;
+      dragonRight = dragonLeft-dragonWidth;
+
+        $('#dragon').attr('style','top:'+axisY+'%; left:'+axisX+'%');
+        if (dragonRotation == 1) {
+          if (dragonFoot == 1) {
+            dragonFoot = 2;
+            $('#dragon').attr('src','img/dragon2.png');
+            dragonRotation = 2;
+          }
+          else if (dragonFoot == 2) {
+            dragonFoot = 1;
+            $('#dragon').attr('src','img/dragon.png');
+            dragonRotation = 2;
+          }
+        }
+        else if (dragonRotation == 2) {
+          if (dragonFoot == 1) {
+            dragonFoot = 2;
+            $('#dragon').attr('src','img/dragon2.png');
+          }
+          else if (dragonFoot == 2) {
+            dragonFoot = 1;
+            $('#dragon').attr('src','img/dragon.png');
+          }
+        }
+      }
+    }
+  }
+
+});
+
+function launch() {
+  if (scoreUp == 500) {
+    multi = multi + 0.01;
+    speed = speed + 0.1;
+    scoreUp = 0;
+  }
+  
+  $('#score').html(score+' P');
+  $('#speed').html('x'+speed);
+  var x = random(3);
+  move = 0;
+  if (x == 1) { //выбрана 1я и 3я стена
+    timerW = setInterval(function() {
+      move = move+multi
+      $('#wall1').attr('style','right:'+move+ '%'); //ап от 0 до 33,3
+      $('#wall3').attr('style','right:'+move+ '%'); //ап от 66,6% до 99,9%
+      wallLeft = parseInt(wall1.style.right)+10; //10
+      wallRight = parseInt(wall1.style.right) //0
+      long = dragonRight - wallLeft;
+      
+      if ( ( (long <= 0 && long >= -25 ) && (axisY >= 0 && axisY <= 33.3) ) || ( (long <= 0 && long >= -20) && (dragonBottom >= 66.6 && dragonBottom <= 99.9) ) ) { //если столкнулся
+        clearInterval(timerW);
+        musicPlay.pause();
+
+        gamePad = 0;
+        enter = 1;
+        fail.load();
+        fail.play();
+
+          if (style == 1) {
+            $('#buttonNewGame').attr('style','display: block;');
+          }
+          else{
+            $('#buttonNewGame').attr('style','display: block; color: #002bfd; outline: 1px solid #002bfd;');
+          }
+
+      }
+      else if (move > 100) {
+        clearInterval(timerW);
+        score = score + 100;
+        scoreUp = scoreUp + 100;
+        launch();
+      }
+    });
+  }
+  else if (x == 2) { //выбрана 1я и 2я стена
+    timerW = setInterval(function() {
+      move = move+multi
+      $('#wall1').attr('style','right:'+move+ '%'); //ап от 0 до 33,3
+      $('#wall2').attr('style','right:'+move+ '%'); //ап от 33.3 до 66.6%
+      wallLeft = parseInt(wall1.style.right)+10; //10
+      wallRight = parseInt(wall1.style.right) //0
+      long = dragonRight - wallLeft;
+      
+      if ( ( (long <= 0 && long >= -25 ) && (axisY >= 0 && axisY <= 66.6) ) ){ //если столкнулся
+        clearInterval(timerW);
+        musicPlay.pause();
+
+        gamePad = 0;
+        enter = 1;
+        fail.load();
+        fail.play();
+
+          if (style == 1) {
+            $('#buttonNewGame').attr('style','display: block;');
+          }
+          else{
+            $('#buttonNewGame').attr('style','display: block; color: #002bfd; outline: 1px solid #002bfd;');
+          }
+
+      }
+      else if (move > 100) {
+        clearInterval(timerW);
+        score = score + 100;
+        scoreUp = scoreUp + 100;
+        launch();
+      }
+    });
+  }
+  else if (x == 3) { //выбрана 2я и 3я стена
+    timerW = setInterval(function() {
+      move = move+multi
+      $('#wall2').attr('style','right:'+move+ '%'); //ап от 33,3 до 66,6%
+      $('#wall3').attr('style','right:'+move+ '%'); //ап от 66,6% до 99,9%
+      wallLeft = parseInt(wall2.style.right)+10; //10
+      wallRight = parseInt(wall2.style.right) //0
+      long = dragonRight - wallLeft;
+      
+      if ( ( (long <= 0 && long >= -25 ) && (dragonBottom >= 33.3 && dragonBottom <= 99.9) ) ){ //если столкнулся
+        clearInterval(timerW);
+        musicPlay.pause();
+
+        gamePad = 0;
+        enter = 1;
+        fail.load();
+        fail.play();
+
+          if (style == 1) {
+            $('#buttonNewGame').attr('style','display: block;');
+          }
+          else{
+            $('#buttonNewGame').attr('style','display: block; color: #002bfd; outline: 1px solid #002bfd;');
+          }
+
+      }
+      else if (move > 100) {
+        clearInterval(timerW);
+        score = score + 100;
+        scoreUp = scoreUp + 100;
+        launch();
+      }
+    });
+  }
+}
+</script>
+</body>
+</html>
